@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block title %}Length of tracks{% endblock %}
+{% block header %}
+  <h1>Length of tracks</h1>
+{% endblock %}
+{% block content %}
+<ul>
+{% for len in length %}
+    <li>The song's title: <b>{{len[0]}}</b></li>
+    <li>Duration in seconds: <b>{{len[1]}}</b></li>
+{% endfor %}
+</ul>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

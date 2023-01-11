@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block title %}Statistic{% endblock %}
+{% block header %}
+  <h1>Statistic</h1>
+{% endblock %}
+{% block content %}
+<ul>
+{% for len in length %}
+    <li>Mean length of song in seconds: <b>{{len[0]}}</b></li>
+    <li>Total length of all songs in seconds: <b>{{len[1]}}</b></li>
+{% endfor %}
+</ul>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
