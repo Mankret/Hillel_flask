@@ -1,5 +1,5 @@
 from flask import (
-    Blueprint, g, render_template, request
+    Blueprint, g, render_template, request, session
 )
 import csv
 from statistics import mean
@@ -61,7 +61,7 @@ def space():
 @bp.route('/names/')
 def names():
     db = get_db()
-    cur = db.execute('''SELECT artist FROM tracks
+    cur = db.execute('''SELECT COUNT(DISTINCT(artist)) FROM tracks
                         ORDER by artist''')
     temp = cur.fetchall()
     artists = [x[0] for x in temp]
@@ -70,11 +70,9 @@ def names():
 
 @bp.route('/tracks/')
 def tracks():
-    db = get_db()
-    cur = db.execute('''SELECT COUNT (*) FROM tracks''')
-    temp = cur.fetchone()
-    numbers = [x for x in temp]
-    return render_template('numbers.html', numbers=str(*numbers))
+    total_count = session.get('tracks')
+    numbers = get_db().execute('''SELECT COUNT (*) FROM tracks''').fetchone()
+    return render_template('numbers.html', numbers=numbers)
 
 
 @bp.route('/tracks/<genre>')
